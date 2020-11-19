@@ -77,3 +77,6 @@ security:
     access_control:
         - { path: ^/api/, roles: ROLE_API }
 ```
+### Keycloak configuration
+
+To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak-config-guide.md) is a step by step describing for a basic configuration of keycloak.
