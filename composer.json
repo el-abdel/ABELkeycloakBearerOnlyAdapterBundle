@@ -1,0 +1,35 @@
+{
+    "name": "abel/keycloak-bearer-only-adapter-bundle",
+    "description": "Keycloak security adapter for bearer only clients",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Abdellah Elmakhroubi",
+            "email": "abdellah.elmakhroubi@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.1",
+        "symfony/config": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/security-bundle": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ABEL\\Bundle\\keycloakBearerOnlyAdapterBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ABEL\\Bundle\\keycloakBearerOnlyAdapterBundle\\Tests\\": "Tests"
+        }
+    }
+}
