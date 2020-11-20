@@ -36,7 +36,7 @@ Last but not least we need to affect our role to our users.
 
 To add role, go to ```Manage > Users > View all users > [Some User] > Role Mappings```.
 
-* In the **Client Roles** dropdown select your client that contains our roles.
-* Select Roles in **Available Roles** list, then click **Add selected** to assign role to the uses.
+* In the **Client Roles** dropdown, select your client that contains our role(s).
+* Select Roles in **Available Roles** list, then click **Add selected** to assign role to the user.
 
 And your all done, now you can use your client to secure your API.
