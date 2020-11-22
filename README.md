@@ -79,4 +79,4 @@ security:
 ```
 ### Keycloak configuration
 
-To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak-config-guide.md) is a step by step describing for a basic configuration of keycloak.
+To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak-config-guide.md) is a step by step documentation for a basic configuration of keycloak.
