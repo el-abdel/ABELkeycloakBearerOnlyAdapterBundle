@@ -210,6 +210,6 @@ class KeycloakBearerAuthenticator extends AbstractGuardAuthenticator
      */
     protected function formatToken(string $token): string
     {
-        return trim(preg_replace('/^(?:\s+)?Bearer\s/', '', $token));
+        return trim(preg_replace('/^(?:\s+)?[B-b]earer\s/', '', $token));
     }
 }
