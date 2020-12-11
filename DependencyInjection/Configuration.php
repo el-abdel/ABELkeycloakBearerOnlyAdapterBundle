@@ -31,6 +31,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode("client_secret")
                     ->isRequired()
                     ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('ssl_verification')
+                    ->defaultFalse()
+                    ->treatNullLike(false)
                 ->end();
 
         return $treeBuilder;

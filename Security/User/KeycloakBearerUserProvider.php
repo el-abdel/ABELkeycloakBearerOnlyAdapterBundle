@@ -28,6 +28,10 @@ class KeycloakBearerUserProvider implements UserProviderInterface
      * @var string
      */
     private $client_secret;
+    /**
+     * @var mixed
+     */
+    private $sslVerification;
 
     /**
      * KeycloakBearerUserProvider constructor.
@@ -36,12 +40,13 @@ class KeycloakBearerUserProvider implements UserProviderInterface
      * @param string $client_id
      * @param string $client_secret
      */
-    public function __construct(string $issuer, string $realm, string $client_id, string $client_secret)
+    public function __construct(string $issuer, string $realm, string $client_id, string $client_secret, $sslVerification)
     {
         $this->issuer = $issuer;
         $this->realm = $realm;
         $this->client_id = $client_id;
         $this->client_secret = $client_secret;
+        $this->sslVerification = $sslVerification;
     }
 
     /**
@@ -71,6 +76,7 @@ class KeycloakBearerUserProvider implements UserProviderInterface
                 'http'  => '', // Use this proxy with "http"
                 'https' => '', // Use this proxy with "https",
             ],
+            'verify' => $this->sslVerification,
             'http_errors' => false
         ]);
 
