@@ -27,6 +27,7 @@ abel_keycloak_bearer_only_adapter:
     realm: '%env(OAUTH_KEYCLOAK_REALM)%' # your keycloak realm name
     client_id: '%env(OAUTH_KEYCLOAK_CLIENT_ID)%' # your keycloak client id
     client_secret: '%env(OAUTH_KEYCLOAK_CLIENT_SECRET)%' # your keycloak client secret
+    #ssl_verification: False # by default ssl_verification is set to False
 ```
 The best practice is to load your configuration from **.env** file.
 
