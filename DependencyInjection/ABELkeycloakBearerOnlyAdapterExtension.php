@@ -24,6 +24,7 @@ class ABELkeycloakBearerOnlyAdapterExtension extends Extension
         $definition->replaceArgument(1, $config['realm']);
         $definition->replaceArgument(2, $config['client_id']);
         $definition->replaceArgument(3, $config['client_secret']);
+        $definition->replaceArgument(4, $config['ssl_verification']);
     }
 
     public function getAlias()

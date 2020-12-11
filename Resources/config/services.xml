@@ -17,6 +17,7 @@
             <argument/>
             <argument/>
             <argument/>
+            <argument/>
         </service>
 
         <service id="ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\User\KeycloakBearerUserProvider" alias="abel_keycloak_bearer_only_adapter.keycloak_bearer_user_provider" />
