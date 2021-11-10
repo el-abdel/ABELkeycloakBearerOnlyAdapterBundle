@@ -59,6 +59,7 @@ Here is a simple configuration that restrict access to ```/api/*``` routes only 
 ```yaml
 # config/packages/security.yaml
 security:
+    enable_authenticator_manager: true
     providers:
         keycloak_bearer_user_provider:
             id: ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\User\KeycloakBearerUserProvider
@@ -68,13 +69,10 @@ security:
             security: false
         api:
             pattern: ^/api/
-            guard:
-                provider: keycloak_bearer_user_provider
-                authenticators:
-                    - ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\Authenticator\KeycloakBearerAuthenticator
+            provider: keycloak_bearer_user_provider
+            custom_authenticators:
+              - ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\Authenticator\KeycloakBearerAuthenticator
             stateless: true
-        main:
-            anonymous: ~
     access_control:
         - { path: ^/api/, roles: ROLE_API }
 ```
