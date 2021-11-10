@@ -34,12 +34,12 @@ The best practice is to load your configuration from **.env** file.
 ```
 # .env
 ...
-###> Keycloak ###
+###> Abel_keycloak_bearer_only_adapter ###
 OAUTH_KEYCLOAK_ISSUER=http://keycloak.local:8080
 OAUTH_KEYCLOAK_REALM=my_realm
 OAUTH_KEYCLOAK_CLIENT_ID=my_bearer_client
 OAUTH_KEYCLOAK_CLIENT_SECRET=my_bearer_client_secret
-###< Keycloak ###
+###< Abel_keycloak_bearer_only_adapter ###
 ...
 ```
 
