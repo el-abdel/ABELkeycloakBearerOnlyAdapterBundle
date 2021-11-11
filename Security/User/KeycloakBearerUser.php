@@ -246,6 +246,14 @@ class KeycloakBearerUser implements UserInterface, \Serializable
     }
 
     /**
+     * @return string
+     */
+    public function getUserIdentifier(): string
+    {
+        return $this->preferred_username;
+    }
+
+    /**
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like

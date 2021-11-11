@@ -28,13 +28,13 @@ class KeycloakBearerAuthenticator extends AbstractAuthenticator
 
     public function supports(Request $request): ?bool
     {
-        return $request->headers->has('Authorization');
+        return true;
     }
 
     public function authenticate(Request $request): PassportInterface
     {
         $token = $request->headers->get('Authorization');
-        if (null === $token) {
+        if (null === $token || empty($token)) {
             // The token header was empty, authentication fails with HTTP Status
             // Code 401 "Unauthorized"
             throw new CustomUserMessageAuthenticationException('Token is not present in the request headers');

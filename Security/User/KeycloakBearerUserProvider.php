@@ -5,6 +5,7 @@ namespace ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\User;
 
 
 use GuzzleHttp\Client;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -115,11 +116,11 @@ class KeycloakBearerUserProvider implements UserProviderInterface{
         $jwt = json_decode($response->getBody(), true);
 
         if (!$jwt['active']) {
-            throw new \UnexpectedValueException('The token does not exist or is not valid anymore');
+            throw new CustomUserMessageAuthenticationException('The token does not exist or is not valid anymore');
         }
 
         if (!isset($jwt['resource_access'][$this->client_id])) {
-            throw new \UnexpectedValueException('The token does not have the necessary permissions!');
+            throw new CustomUserMessageAuthenticationException('The token does not have the necessary permissions!');
         }
 
         return new KeycloakBearerUser(
