@@ -5,13 +5,15 @@ namespace ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\User;
 
 
 use GuzzleHttp\Client;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class KeycloakBearerUserProvider implements UserProviderInterface
-{
+
+class KeycloakBearerUserProvider implements UserProviderInterface{
+
     /**
      * @var string
      */
@@ -50,18 +52,49 @@ class KeycloakBearerUserProvider implements UserProviderInterface
     }
 
     /**
-     * Loads the user for the given username.
+     * Refreshes the user after being reloaded from the session.
      *
-     * This method must throw UsernameNotFoundException if the user is not
-     * found.
+     * When a user is logged in, at the beginning of each request, the
+     * User object is loaded from the session and then this method is
+     * called. Your job is to make sure the user's data is still fresh by,
+     * for example, re-querying for fresh User data.
      *
-     * @param string $accessToken The username
+     * If your firewall is "stateless: true" (for a pure API, which is our case), this
+     * method is not called. But it is implement it anyway.
      *
      * @return UserInterface
-     *
-     * @throws UsernameNotFoundException if the user is not found
      */
-    public function loadUserByUsername($accessToken)
+    public function refreshUser(UserInterface $user): UserInterface
+    {
+        if (!$user instanceof KeycloakBearerUser) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
+        }
+
+        $user = $this->loadUserByIdentifier($user->getAccessToken());
+
+        if (!$user) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param string $class
+     * @return bool
+     */
+    public function supportsClass(string $class)
+    {
+        return KeycloakBearerUser::class === $class || is_subclass_of(KeycloakBearerUser, User::class);
+    }
+
+
+
+    /**
+     * @param string $accessToken
+     * @return UserInterface
+     */
+    public function loadUserByIdentifier(string $accessToken): UserInterface
     {
         $client = new Client([
             'base_uri' => $this->issuer,
@@ -83,11 +116,11 @@ class KeycloakBearerUserProvider implements UserProviderInterface
         $jwt = json_decode($response->getBody(), true);
 
         if (!$jwt['active']) {
-            throw new \UnexpectedValueException('The token does not exist or is not valid anymore');
+            throw new CustomUserMessageAuthenticationException('The token does not exist or is not valid anymore');
         }
 
         if (!isset($jwt['resource_access'][$this->client_id])) {
-            throw new \UnexpectedValueException('The token does not have the necessary permissions!');
+            throw new CustomUserMessageAuthenticationException('The token does not have the necessary permissions!');
         }
 
         return new KeycloakBearerUser(
@@ -103,42 +136,11 @@ class KeycloakBearerUserProvider implements UserProviderInterface
     }
 
     /**
-     * Refreshes the user.
-     *
-     * It is up to the implementation to decide if the user data should be
-     * totally reloaded (e.g. from the database), or if the UserInterface
-     * object can just be merged into some internal array of users / identity
-     * map.
-     *
+     * @param string $username
      * @return UserInterface
-     *
-     * @throws UnsupportedUserException  if the user is not supported
-     * @throws UsernameNotFoundException if the user is not found
      */
-    public function refreshUser(UserInterface $user)
+    public function loadUserByUsername(string $username): UserInterface
     {
-        if (!$user instanceof KeycloakBearerUser) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
-        }
-
-        $user = $this->loadUserByUsername($user->getAccessToken());
-
-        if (!$user) {
-            throw new UsernameNotFoundException();
-        }
-
-        return $user;
-    }
-
-    /**
-     * Whether this provider supports the given user class.
-     *
-     * @param string $class
-     *
-     * @return bool
-     */
-    public function supportsClass($class)
-    {
-        return KeycloakBearerUser::class === $class;
+        return $this->loadUserByIdentifier($username);
     }
 }
