@@ -12,10 +12,10 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.2.5",
-        "symfony/config": "^5.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/http-kernel": "^5.0",
-        "symfony/security-bundle": "^5.0",
+        "symfony/config": "^5.3",
+        "symfony/dependency-injection": "^5.3",
+        "symfony/http-kernel": "^5.3",
+        "symfony/security-bundle": "^5.3",
         "guzzlehttp/guzzle": "^6.3",
         "ext-json": "*"
     },
