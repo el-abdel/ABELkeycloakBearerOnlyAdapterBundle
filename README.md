@@ -76,7 +76,7 @@ security:
     access_control:
         - { path: ^/api/, roles: ROLE_API }
 ```
-> :information_source: Referring to Symfony [documentation](https://symfony.com/doc/5.3/security.html#roles), role names must start with **ROLE_** (otherwise, things won't work as expected)
+> :information_source: Referring to Symfony [documentation](https://symfony.com/doc/5.3/security.html#roles), roles must start with **ROLE_** (otherwise, things won't work as expected)
 ### Keycloak configuration
 
 To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak-config-guide.md) is a step by step documentation for a basic configuration of keycloak.
