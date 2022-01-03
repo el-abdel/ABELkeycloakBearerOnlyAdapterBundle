@@ -8,7 +8,7 @@ This Symfony bundle is an adapter that allows securing API using keycloak Bearer
 With composer:
 
 ```
-$ composer require abel/keycloak-bearer-only-adapter-bundle
+composer require abel/keycloak-bearer-only-adapter-bundle
 ```
 
 ## Configuration
@@ -35,7 +35,7 @@ The best practice is to load your configuration from **.env** file.
 # .env
 ...
 ###> Abel_keycloak_bearer_only_adapter ###
-OAUTH_KEYCLOAK_ISSUER=http://keycloak.local:8080
+OAUTH_KEYCLOAK_ISSUER=keycloak:8080
 OAUTH_KEYCLOAK_REALM=my_realm
 OAUTH_KEYCLOAK_CLIENT_ID=my_bearer_client
 OAUTH_KEYCLOAK_CLIENT_SECRET=my_bearer_client_secret
@@ -45,10 +45,10 @@ OAUTH_KEYCLOAK_CLIENT_SECRET=my_bearer_client_secret
 
 In case of using Keycloak with Docker locally replace **issuer** value with your keycloak container reference in the network
 
-For example, you can use the container IPAdresse, that you can get using this command:
+For example, you can use the service name, or container IPAdresse that you can get using this command:
 
 ```
-$ docker inspect <container id> | grep "IPAddress"
+docker inspect <container id> | grep "IPAddress"
 ```
 ### Symfony security configuration
 
