@@ -18,7 +18,7 @@ If you want to set up keycloak locally you can download it [here](https://www.ke
 ### Bundle configuration
 
 #### Via a recipe (Automatic)
-This bundle hase a Symfony recipes that allow the automation of configuration via the Symfony Flex Composer plugin.
+This bundle hase a Symfony recipe that allow the automation of configuration via the Symfony Flex Composer plugin.
 To enable recipe for your project, run the following command:
 
 ```
