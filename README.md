@@ -17,6 +17,15 @@ If you want to set up keycloak locally you can download it [here](https://www.ke
 
 ### Bundle configuration
 
+#### Via a recipe (Automatic)
+This bundle hase a Symfony recipes that allow the automation of configuration via the Symfony Flex Composer plugin.
+To enable recipe for your project, run the following command:
+
+```
+composer config extra.symfony.allow-contrib true
+```
+
+#### Manual
 Having a running keycloak locally or in Docker and already configured a client with **Access Type = bearer-only**
 here is the configuration to use:
 
