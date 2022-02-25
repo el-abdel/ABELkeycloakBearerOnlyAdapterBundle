@@ -5,6 +5,11 @@ This Symfony bundle is an adapter that allows securing API using keycloak Bearer
 
 ## Installation
 
+> Befor installing the bundle, automatic packages configuration can be activated with the following command:
+> ```
+> composer config extra.symfony.allow-contrib true
+> ```
+
 With composer:
 
 ```
