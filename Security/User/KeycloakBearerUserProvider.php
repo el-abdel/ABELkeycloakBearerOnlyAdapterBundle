@@ -85,7 +85,7 @@ class KeycloakBearerUserProvider implements UserProviderInterface{
      */
     public function supportsClass(string $class)
     {
-        return KeycloakBearerUser::class === $class || is_subclass_of(KeycloakBearerUser, User::class);
+        return KeycloakBearerUser::class === $class || is_subclass_of($class, KeycloakBearerUser::class);
     }
 
 
