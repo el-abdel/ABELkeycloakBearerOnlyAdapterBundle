@@ -101,5 +101,5 @@ To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak
 | Bundle Version                                        | Symfony Version    |
 | ------------------------------------------------------|--------------------|
 | V1.0.1                                                | >=4.0.0   <5.0.0   |
-| V1.1.0 (uses old authentication systeme with guard)   | >=5.0.0   <6.0.0   |
-| V1.2.0 (uses new authentication systeme)              | >=5.3.0   <6.0.0   |
+| V1.1.* (uses old authentication systeme with guard)   | >=5.0.0   <6.0.0   |
+| V1.2.* (uses new authentication systeme)              | >=5.3.0   <6.0.0   |
