@@ -27,7 +27,7 @@ class ABELkeycloakBearerOnlyAdapterExtension extends Extension
         $definition->replaceArgument(4, $config['ssl_verification']);
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'abel_keycloak_bearer_only_adapter';
     }
