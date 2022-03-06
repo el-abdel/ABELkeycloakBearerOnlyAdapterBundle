@@ -202,7 +202,7 @@ class KeycloakBearerUser implements UserInterface, \Serializable
      *
      * @return array (Role|string)[] The user roles
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
