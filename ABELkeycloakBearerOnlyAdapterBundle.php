@@ -9,6 +9,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class ABELkeycloakBearerOnlyAdapterBundle extends Bundle
 {
+    /**
+     * @return ExtensionInterface|null
+     */
     public function getContainerExtension()
     {
         if (null === $this->extension) {
