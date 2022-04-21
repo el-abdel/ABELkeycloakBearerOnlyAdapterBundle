@@ -56,6 +56,11 @@ OAUTH_KEYCLOAK_CLIENT_SECRET=my_bearer_client_secret
 ###< Abel_keycloak_bearer_only_adapter ###
 ...
 ```
+> Since Keycloak 17 the default distribution is now powered by **Quarkus**, while the legacy **WildFly** powered distribution will still be around until June 2022 <br>
+> The new distribution introduces a number of breaking changes, including: <br>
+> - `/auth` removed from the default context path <br>
+> ⚠️ **If you are using a legacy version make sure to include /auth in OAUTH_KEYCLOAK_ISSUER** <br>
+> Example: `keycloak:8080/auth`
 
 In case of using Keycloak with Docker locally replace **issuer** value with your keycloak container reference in the network
 
