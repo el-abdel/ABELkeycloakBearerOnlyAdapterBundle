@@ -100,7 +100,7 @@ class KeycloakBearerUserProvider implements UserProviderInterface{
             'base_uri' => $this->issuer,
         ]);
 
-        $response = $client->post('/auth/realms/'.$this->realm.'/protocol/openid-connect/token/introspect', [
+        $response = $client->post('/realms/'.$this->realm.'/protocol/openid-connect/token/introspect', [
             'auth' => [$this->client_id, $this->client_secret],
             'form_params' => [
                 'token' => $accessToken,
