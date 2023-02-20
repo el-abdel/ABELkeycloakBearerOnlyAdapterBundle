@@ -6,7 +6,7 @@ namespace ABEL\Bundle\keycloakBearerOnlyAdapterBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class KeycloakBearerUser implements UserInterface, \Serializable
+class KeycloakBearerUser implements UserInterface
 {
     /**
      * @var string
@@ -270,7 +270,7 @@ class KeycloakBearerUser implements UserInterface, \Serializable
      * @return string the string representation of the object or null
      * @since 5.1.0
      */
-    public function serialize()
+    public function __serialize()
     {
         return serialize(array(
             $this->sub,
@@ -293,7 +293,7 @@ class KeycloakBearerUser implements UserInterface, \Serializable
      * @return void
      * @since 5.1.0
      */
-    public function unserialize($serialized)
+    public function __unserialize($serialized)
     {
         list (
             $this->sub,
